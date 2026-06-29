@@ -46,7 +46,7 @@ export function TestimonialsSection() {
             Reflective Space
           </p>
           <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-            Change is possible
+            Where change is possible
           </h2>
         </div>
 

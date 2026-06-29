@@ -68,10 +68,11 @@ function SetupNotice() {
         <code className="rounded bg-secondary px-1.5 py-0.5 text-xs">
           NEXT_PUBLIC_SANITY_DATASET
         </code>{" "}
-        environment variables, then create content at{" "}
+        environment variables, then create content from the{" "}
         <code className="rounded bg-secondary px-1.5 py-0.5 text-xs">
-          /studio
-        </code>
+          /admin
+        </code>{" "}
+        dashboard
         .
       </p>
     </div>
@@ -85,11 +86,11 @@ function EmptyState() {
         No posts yet
       </h2>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        Head to{" "}
+        Head to the{" "}
         <code className="rounded bg-secondary px-1.5 py-0.5 text-xs">
-          /studio
+          /admin
         </code>{" "}
-        to write your first post. It will appear here automatically.
+        dashboard to write your first post. It will appear here automatically.
       </p>
     </div>
   )

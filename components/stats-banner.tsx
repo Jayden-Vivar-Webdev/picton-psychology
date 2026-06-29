@@ -1,35 +1,39 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
-import { Hand, MessagesSquare, Compass, Sprout, Sun } from "lucide-react"
+import { motion } from "motion/react";
+import { Hand, MessagesSquare, Compass, Sprout, Sun } from "lucide-react";
 
 const steps = [
   {
     icon: Hand,
     title: "Reach out",
-    description: "Take the first step with a simple, no-pressure message or call.",
+    description: "Take the first step by contacting us.",
   },
   {
     icon: MessagesSquare,
     title: "First session",
-    description: "A gentle conversation to get to know you and what brings you here.",
+    description:
+      "A gentle conversation to get to know you and what brings you here.",
   },
   {
     icon: Compass,
     title: "Understanding",
-    description: "Together we make sense of things and find a direction that fits.",
+    description:
+      "Together we make sense of things and find a direction that fits.",
   },
   {
     icon: Sprout,
     title: "Growth",
-    description: "Build new strengths and tools at a pace that feels right for you.",
+    description:
+      "Build new strengths and tools at a pace that feels right for you.",
   },
   {
     icon: Sun,
     title: "Wellbeing",
-    description: "Move forward feeling more like yourself, supported every step.",
+    description:
+      "Move forward feeling more like yourself, supported every step.",
   },
-]
+];
 
 export default function StatsBanner() {
   return (
@@ -43,8 +47,8 @@ export default function StatsBanner() {
             Your journey with us
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Healing happens one gentle step at a time. Here&apos;s the path we&apos;ll
-            walk together, at a pace that feels right for you.
+            Healing happens one gentle step at a time. Here&apos;s the path
+            we&apos;ll walk together, at a pace that feels right for you.
           </p>
         </div>
 
@@ -56,7 +60,7 @@ export default function StatsBanner() {
           />
 
           {steps.map((step, index) => {
-            const Icon = step.icon
+            const Icon = step.icon;
             return (
               <motion.li
                 key={step.title}
@@ -64,9 +68,13 @@ export default function StatsBanner() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.12,
+                  ease: "easeOut",
+                }}
               >
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-primary/20 bg-background shadow-sm">
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-primary/20 bg-background shadow-sm transition-transform ease-out hover:scale-110">
                   <Icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
                   <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary font-medium text-[10px] text-primary-foreground">
                     {index + 1}
@@ -79,10 +87,10 @@ export default function StatsBanner() {
                   {step.description}
                 </p>
               </motion.li>
-            )
+            );
           })}
         </ol>
       </div>
     </section>
-  )
+  );
 }

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const steps = [
   {
     number: "01",
@@ -17,12 +19,25 @@ const steps = [
     description:
       "Together we work towards lasting change, at a pace that always honours your comfort and wellbeing.",
   },
-]
+];
 
 export function ApproachSection() {
   return (
-    <section id="approach" className="px-6 py-20">
-      <div className="mx-auto max-w-6xl">
+    <section id="approach" className="px-6 py-40 relative">
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/nature-leaves.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-100"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+      </div>
+      <div className="relative mx-auto max-w-6xl bg-background p-10 rounded-lg">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
             Our approach
@@ -52,5 +67,5 @@ export function ApproachSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,26 +1,25 @@
-import { Quote } from "lucide-react"
+import { Quote } from "lucide-react";
 
 const testimonials = [
   {
     quote:
-      "I arrived feeling completely overwhelmed. For the first time in years, I felt truly listened to, without any judgement.",
-    name: "Maya R.",
+      "Even the most restless mind can find stillness in small, gentle moments.",
+    name: "Peace",
     detail: "Anxiety & stress support",
     featured: true,
   },
   {
-    quote:
-      "The pace was always mine to set. That gentleness made all the difference in my recovery.",
-    name: "James T.",
+    quote: "This too is temporary. Breathe, and let it pass through you.",
+    name: "Reflective",
     detail: "Burnout & sleep",
   },
   {
     quote:
-      "We rebuilt our communication from the ground up. We finally feel like a team again.",
-    name: "Priya & Sam",
-    detail: "Couples therapy",
+      "What happened to you may have shaped your story, but it does not define your worth or where your story can go from here.",
+    name: "Recovery",
+    detail: "Trauma",
   },
-]
+];
 
 const affirmations = [
   "You are allowed to rest",
@@ -29,12 +28,13 @@ const affirmations = [
   "Small steps still count",
   "You are not alone",
   "It is okay to ask for help",
-]
+];
 
 export function TestimonialsSection() {
   return (
     <section id="testimonials" className="relative overflow-hidden px-6 py-20">
       {/* Abstract organic backdrop */}
+
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="animate-willow-drift-slow absolute -right-24 top-10 size-80 rounded-full bg-secondary/50 blur-3xl" />
         <div className="animate-willow-drift absolute -left-20 bottom-0 size-72 rounded-full bg-accent/30 blur-3xl" />
@@ -43,10 +43,10 @@ export function TestimonialsSection() {
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-12 max-w-2xl">
           <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
-            In their own words
+            Reflective Space
           </p>
           <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-            Stories of gentle change
+            Change is possible
           </h2>
         </div>
 
@@ -107,11 +107,14 @@ export function TestimonialsSection() {
               className="flex items-center gap-6 whitespace-nowrap font-serif text-2xl font-medium text-foreground/30 md:text-3xl"
             >
               {word}
-              <span className="size-2 rounded-full bg-primary/40" aria-hidden="true" />
+              <span
+                className="size-2 rounded-full bg-primary/40"
+                aria-hidden="true"
+              />
             </span>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

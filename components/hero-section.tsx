@@ -56,18 +56,19 @@ export function HeroSection() {
 
   if (mounted)
     return (
-      <section className="relative isolate overflow-hidden px-6 pt-16 pb-12 md:py-50">
+      <section className="relative isolate overflow-hidden px-6 pt-20 pb-20 md:pt-28 md:pb-28">
         <div className="absolute inset-0 -z-10" aria-hidden="true">
           <Image
             src="/images/nature-leaves.jpg"
-            alt="Nature hero section"
+            alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-100"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-background-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+          {/* Soft brand wash: keeps foliage visible but text fully readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
         </div>
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 z-10">
           <motion.div
@@ -91,11 +92,8 @@ export function HeroSection() {
               variants={itemBase}
               className="text-balance font-serif text-4xl font-medium leading-tight tracking-tight text-foreground md:text-6xl"
             >
-              A{" "}
-              <motion.span className="text-primary-foreground">
-                calm space
-              </motion.span>{" "}
-              to feel heard and supported
+              A <span className="text-primary">calm space</span> to feel
+              heard and supported
             </motion.h1>
 
             <motion.p
@@ -140,10 +138,10 @@ export function HeroSection() {
               animate="visible"
             >
               <Image
-                src="/images/clinic-room.webp"
-                alt="A peaceful, sunlit therapy room with a comfortable armchair and a green plant"
-                width={720}
-                height={820}
+                src="/images/hero-team.jpg"
+                alt="Two friendly Picton Psychology clinicians smiling together outside the practice"
+                width={820}
+                height={720}
                 className="h-full w-full object-cover"
                 priority
               />

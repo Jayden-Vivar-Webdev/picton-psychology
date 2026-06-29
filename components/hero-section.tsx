@@ -57,7 +57,7 @@ export function HeroSection() {
   if (mounted)
     return (
       <section className="relative overflow-hidden px-6 pt-16 pb-12 md:pt-24 md:pb-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 z-10">
           <motion.div
             className="flex flex-col items-start gap-6"
             variants={container}

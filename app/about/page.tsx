@@ -1,17 +1,17 @@
-import type { Metadata } from "next"
-import Image from "next/image"
-import Link from "next/link"
-import { Check, Heart, Leaf, ShieldCheck, Sparkles } from "lucide-react"
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Check, Heart, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
+import { Button } from "@/components/ui/button";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "About the clinic | Picton Psychology",
   description:
     "Learn the story, values, and quiet philosophy behind Picton Psychology — a warm, welcoming clinic built around compassionate, person-centred care.",
-}
+};
 
 const values = [
   {
@@ -38,20 +38,20 @@ const values = [
     description:
       "We help you build understanding and tools that stay with you, long after our sessions end.",
   },
-]
+];
 
 const promises = [
   "A safe, confidential and judgement-free space",
   "Warm, qualified and genuinely caring therapists",
   "Flexible in-person and online sessions",
   "An approach shaped entirely around you",
-]
+];
 
 const milestones = [
   { value: "2014", label: "Year Picton Psychology opened its doors" },
   { value: "3,000+", label: "People supported on their journey" },
   { value: "12", label: "Specialist areas of care" },
-]
+];
 
 export default function AboutPage() {
   return (
@@ -73,10 +73,10 @@ export default function AboutPage() {
                 A peaceful place to pause, reflect, and heal
               </h1>
               <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-                Picton Psychology was founded on a simple belief: everyone deserves to
-                feel understood. We&apos;ve created a calm, welcoming environment
-                where you can slow down, feel safe, and work towards lasting change
-                at your own pace.
+                Picton Psychology was founded on a simple belief: everyone
+                deserves to feel understood. We&apos;ve created a calm,
+                welcoming environment where you can slow down, feel safe, and
+                work towards lasting change at your own pace.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button
@@ -138,16 +138,17 @@ export default function AboutPage() {
               </h2>
               <div className="flex flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
                 <p>
-                  Picton Psychology began with our founder, Dr. Clara Whitfield, and a
-                  frustration shared by so many: that asking for help so often
-                  felt clinical, rushed, and cold. She imagined something gentler —
-                  a clinic that felt more like a deep breath than a waiting room.
+                  Picton Psychology began with our founder, Dr. Clara Whitfield,
+                  and a frustration shared by so many: that asking for help so
+                  often felt clinical, rushed, and cold. She imagined something
+                  gentler — a clinic that felt more like a deep breath than a
+                  waiting room.
                 </p>
                 <p>
-                  Today, we&apos;re a small, close-knit team of therapists who chose
-                  this work because we care. We take the time to truly listen, and
-                  we meet you exactly where you are — no scripts, no pressure, no
-                  rush.
+                  Today, we&apos;re a small, close-knit team of therapists who
+                  chose this work because we care. We take the time to truly
+                  listen, and we meet you exactly where you are — no scripts, no
+                  pressure, no rush.
                 </p>
               </div>
             </div>
@@ -162,7 +163,10 @@ export default function AboutPage() {
           />
           <div className="relative mx-auto grid max-w-5xl gap-8 text-center sm:grid-cols-3">
             {milestones.map((item) => (
-              <div key={item.label} className="flex flex-col items-center gap-2">
+              <div
+                key={item.label}
+                className="flex flex-col items-center gap-2"
+              >
                 <span className="font-serif text-4xl font-medium text-primary md:text-5xl">
                   {item.value}
                 </span>
@@ -222,7 +226,9 @@ export default function AboutPage() {
                     <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
                       <Check className="size-4" aria-hidden="true" />
                     </span>
-                    <span className="leading-relaxed text-foreground">{promise}</span>
+                    <span className="leading-relaxed text-foreground">
+                      {promise}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -234,7 +240,8 @@ export default function AboutPage() {
               </h3>
               <p className="text-pretty leading-relaxed text-muted-foreground">
                 Taking the first step is often the hardest part. When you feel
-                ready, we&apos;re here — gently, patiently, and without judgement.
+                ready, we&apos;re here — gently, patiently, and without
+                judgement.
               </p>
               <Button
                 render={<Link href="/#contact" />}
@@ -250,5 +257,5 @@ export default function AboutPage() {
       </main>
       <SiteFooter />
     </div>
-  )
+  );
 }

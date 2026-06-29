@@ -1,12 +1,12 @@
-import Image from "next/image"
-import { Check } from "lucide-react"
+import Image from "next/image";
+import { Check } from "lucide-react";
 
 const values = [
   "A safe, confidential and judgement-free space",
   "Warm, qualified and genuinely caring therapists",
   "Flexible in-person and online sessions",
   "An approach shaped entirely around you",
-]
+];
 
 export function AboutSection() {
   return (
@@ -15,12 +15,12 @@ export function AboutSection() {
         <div className="relative order-2 lg:order-1">
           <div className="overflow-hidden rounded-[2.5rem] border border-border/60 shadow-sm">
             <Image
-              src="/images/clinic-warm-space.png"
+              src="/images/calm-room.webp"
               alt="A warm, welcoming clinic waiting area with sage green walls and soft natural light"
               width={720}
               height={620}
               loading="lazy"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover aspect-square"
             />
           </div>
         </div>
@@ -33,9 +33,10 @@ export function AboutSection() {
             A peaceful place to pause, reflect, and heal
           </h2>
           <p className="text-pretty leading-relaxed text-muted-foreground">
-            Picton Psychology was founded on a simple belief: everyone deserves to feel
-            understood. We&apos;ve created a calm, welcoming environment where you can
-            slow down, feel safe, and work towards lasting change at your own pace.
+            Picton Psychology was founded on a simple belief: everyone deserves
+            to feel understood. We&apos;ve created a calm, welcoming environment
+            where you can slow down, feel safe, and work towards lasting change
+            at your own pace.
           </p>
 
           <ul className="grid gap-3 pt-2">
@@ -51,5 +52,5 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

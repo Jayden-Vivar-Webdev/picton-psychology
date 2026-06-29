@@ -1,28 +1,28 @@
-import Image from "next/image"
+import Image from "next/image";
 
 const team = [
   {
-    name: "Dr. Clara Whitfield",
+    name: "Lisa Arnold",
     role: "Clinical Psychologist & Founder",
     focus: "Anxiety, trauma & life transitions",
-    image: "/images/team-clara.png",
-    alt: "Portrait of Dr. Clara Whitfield, a warm clinical psychologist in a sage green sweater",
+    image: "/images/team/Liza-Arnold.webp",
+    alt: "Portrait of Clinical Psychologist Lisa Arnold, a warm clinical psychologist in a sage green sweater",
   },
   {
-    name: "Marcus Hayes",
-    role: "Psychotherapist",
+    name: "Natalee Zolotas",
+    role: "Clinical Psychologist & Director",
     focus: "Relationships, stress & burnout",
-    image: "/images/team-marcus.png",
-    alt: "Portrait of Marcus Hayes, a calm psychotherapist in a beige linen shirt",
+    image: "/images/team/Natalee-Zolotas.webp",
+    alt: "Portrait of Natalee Zolotas, a calm clinical psychologist.",
   },
   {
-    name: "Amara Okafor",
-    role: "Counselling Psychologist",
+    name: "Kristen Mazzitelli",
+    role: "Clinical Psychologist",
     focus: "Grief, identity & self-esteem",
-    image: "/images/team-amara.png",
-    alt: "Portrait of Amara Okafor, a caring counselling psychologist in a cream blouse",
+    image: "/images/team/Kristen-Mazzitelli.webp",
+    alt: "Portrait of Kristen Mazzitelli, a caring clinical psychologist",
   },
-]
+];
 
 export function TeamSection() {
   return (
@@ -34,13 +34,16 @@ export function TeamSection() {
       />
       <div className="relative mx-auto max-w-6xl">
         <div className="flex max-w-2xl flex-col items-start gap-4">
-          <p className="text-sm font-medium uppercase tracking-wide text-primary">Our team</p>
+          <p className="text-sm font-medium uppercase tracking-wide text-primary">
+            Our team
+          </p>
           <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
             The caring people behind Picton Psychology
           </h2>
           <p className="text-pretty leading-relaxed text-muted-foreground">
-            Every therapist here is fully qualified, deeply experienced, and chosen for one thing
-            above all: genuine warmth. You&apos;ll be met with patience, never judgement.
+            Every therapist here is fully qualified, deeply experienced, and
+            chosen for one thing above all: genuine warmth. You&apos;ll be met
+            with patience, never judgement.
           </p>
         </div>
 
@@ -57,20 +60,24 @@ export function TeamSection() {
                   width={520}
                   height={620}
                   loading="lazy"
-                  className="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-100 w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <h3 className="font-serif text-xl font-medium tracking-tight text-foreground">
                   {member.name}
                 </h3>
-                <p className="text-sm font-medium text-primary">{member.role}</p>
-                <p className="text-sm leading-relaxed text-muted-foreground">{member.focus}</p>
+                <p className="text-sm font-medium text-primary">
+                  {member.role}
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {member.focus}
+                </p>
               </div>
             </article>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

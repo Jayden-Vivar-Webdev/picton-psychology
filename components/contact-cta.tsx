@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { ArrowRight, Mail, Phone } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { ArrowRight, Mail, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ContactCta() {
   return (
@@ -10,8 +10,8 @@ export function ContactCta() {
           Taking the first step is the hardest part
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-pretty leading-relaxed text-primary-foreground/85">
-          When you&apos;re ready, we&apos;re here. Reach out today and we&apos;ll
-          help you find a time that works for you.
+          When you&apos;re ready, we&apos;re here. Reach out today and
+          we&apos;ll help you find a time that works for you.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -28,19 +28,22 @@ export function ContactCta() {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-primary-foreground/85">
-          <a href="tel:+10000000000" className="flex items-center gap-2 hover:text-primary-foreground">
+          <a
+            href="tel:0246027111"
+            className="flex items-center gap-2 hover:text-primary-foreground"
+          >
             <Phone className="size-4" aria-hidden="true" />
-            (000) 000-0000
+            Phone 02 4602 7111
           </a>
           <a
-            href="mailto:hello@willowgrove.example"
+            href="mailto:reception@pictonpsychology.com.au"
             className="flex items-center gap-2 hover:text-primary-foreground"
           >
             <Mail className="size-4" aria-hidden="true" />
-            hello@willowgrove.example
+            reception@pictonpsychology.com.au
           </a>
         </div>
       </div>
     </section>
-  )
+  );
 }

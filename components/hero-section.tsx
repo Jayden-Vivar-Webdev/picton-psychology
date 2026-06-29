@@ -56,17 +56,17 @@ export function HeroSection() {
 
   if (mounted)
     return (
-      <section className="relative isolate overflow-hidden px-6 pt-16 pb-12 md:pt-40 md:pb-40">
+      <section className="relative isolate overflow-hidden px-6 pt-16 pb-12 md:py-50">
         <div className="absolute inset-0 -z-10" aria-hidden="true">
           <Image
             src="/images/nature-leaves.jpg"
-            alt=""
+            alt="Nature hero section"
             fill
             priority
             sizes="100vw"
             className="object-cover opacity-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/60 to-background-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-background-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
         </div>
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 z-10">
@@ -91,7 +91,10 @@ export function HeroSection() {
               variants={itemBase}
               className="text-balance font-serif text-4xl font-medium leading-tight tracking-tight text-foreground md:text-6xl"
             >
-              A <motion.span className="text-primary">calm space</motion.span>{" "}
+              A{" "}
+              <motion.span className="text-primary-foreground">
+                calm space
+              </motion.span>{" "}
               to feel heard and supported
             </motion.h1>
 

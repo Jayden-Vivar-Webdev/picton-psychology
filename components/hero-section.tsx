@@ -56,7 +56,7 @@ export function HeroSection() {
 
   if (mounted)
     return (
-      <section className="relative overflow-hidden px-6 pt-16 pb-12 md:pt-24 md:pb-20">
+      <section className="relative isolate overflow-hidden px-6 pt-16 pb-12 md:pt-24 md:pb-20">
         <div className="absolute inset-0 -z-10" aria-hidden="true">
           <Image
             src="/images/hero-bg.png"
@@ -64,10 +64,10 @@ export function HeroSection() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-70"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/45 to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
         </div>
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 z-10">
           <motion.div

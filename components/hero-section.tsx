@@ -138,8 +138,8 @@ export function HeroSection() {
               animate="visible"
             >
               <Image
-                src="/images/clinic-room.webp"
-                alt="A peaceful, sunlit therapy room with a comfortable armchair and a green plant"
+                src="/images/hero-connection.png"
+                alt="A warm, welcoming psychologist listening attentively in a calm therapy room"
                 width={720}
                 height={820}
                 className="h-full w-full object-cover"

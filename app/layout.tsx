@@ -14,27 +14,30 @@ const fraunces = Fraunces({
   weight: ['400', '500', '600'],
 })
 
+const SITE_TITLE = 'Picton Psychology | A calm space for your wellbeing'
+const SITE_DESCRIPTION =
+  'Picton Psychology is a warm, welcoming clinic offering compassionate therapy and counselling. A peaceful place to feel heard, supported, and understood.'
+
 export const metadata: Metadata = {
-  title: 'Picton Psychology | A calm space for your wellbeing',
-  description:
-    'Picton Psychology is a warm, welcoming clinic offering compassionate therapy and counselling. A peaceful place to feel heard, supported, and understood.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://pictonpsychology.com.au'),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  applicationName: 'Picton Psychology',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/icon.png',
+    apple: '/icon.png',
+    shortcut: '/icon.png',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Picton Psychology',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
 }
 

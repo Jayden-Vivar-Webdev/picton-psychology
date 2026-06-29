@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Leaf } from "lucide-react"
+import Link from "next/link";
+import { Leaf } from "lucide-react";
 
 const footerLinks = [
   { label: "About", href: "/#about" },
@@ -7,7 +7,7 @@ const footerLinks = [
   { label: "Approach", href: "/#approach" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
-]
+];
 
 export function SiteFooter() {
   return (
@@ -22,7 +22,8 @@ export function SiteFooter() {
           </span>
         </Link>
 
-        <nav className="flex flex-wrap items-center justify-center gap-1" aria-label="Footer navigation">
+        {/**ADD BACK AFTER VIEWING */}
+        {/* <nav className="flex flex-wrap items-center justify-center gap-1" aria-label="Footer navigation">
           {footerLinks.map((link) => (
             <Link
               key={link.href}
@@ -32,12 +33,12 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
-        </nav>
+        </nav> */}
 
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} Picton Psychology
         </p>
       </div>
     </footer>
-  )
+  );
 }

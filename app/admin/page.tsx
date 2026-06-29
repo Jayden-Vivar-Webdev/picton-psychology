@@ -11,6 +11,8 @@ import {
 
 import { isSanityConfigured } from "@/sanity/env"
 
+import { LogoutButton } from "./logout-button"
+
 export const metadata: Metadata = {
   title: "Admin | Picton Psychology",
   description: "Internal content dashboard for Picton Psychology.",
@@ -49,9 +51,12 @@ export default function AdminPage() {
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl px-6 py-16">
         <header className="flex flex-col gap-4 border-b border-border/60 pb-10">
-          <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Picton Psychology
-          </span>
+          <div className="flex items-start justify-between gap-4">
+            <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              Picton Psychology
+            </span>
+            <LogoutButton />
+          </div>
           <h1 className="font-serif text-3xl font-medium text-foreground text-balance md:text-4xl">
             Content dashboard
           </h1>

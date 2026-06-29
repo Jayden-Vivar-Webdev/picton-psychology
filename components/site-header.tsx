@@ -244,7 +244,7 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="hidden items-center gap-1 xl:flex"
+          className="hidden items-center gap-1 " //xl:flex - Add back when finished showing.
           aria-label="Main navigation"
         >
           {menuGroups.map((group) => (
@@ -265,7 +265,7 @@ export function SiteHeader() {
           <Button
             render={<Link href="/contact" />}
             nativeButton={false}
-            className="hidden rounded-full px-5 xl:inline-flex"
+            className="hidden rounded-full px-5" //xl:inline-flex - Add back
           >
             Book a session
           </Button>
@@ -290,7 +290,7 @@ export function SiteHeader() {
       {mobileOpen ? (
         <div
           id="mobile-menu"
-          className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-border/60 bg-background/95 backdrop-blur-md xl:hidden"
+          className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-border/60 bg-background/95 backdrop-blur-md hidden" //xl:hidden - replace with hidden
         >
           <nav
             className="mx-auto flex max-w-6xl flex-col px-6 py-4"

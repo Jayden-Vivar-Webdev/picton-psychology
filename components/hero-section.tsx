@@ -138,10 +138,10 @@ export function HeroSection() {
               animate="visible"
             >
               <Image
-                src="/images/hero-connection.png"
-                alt="A warm, welcoming psychologist listening attentively in a calm therapy room"
-                width={720}
-                height={820}
+                src="/images/hero-team.jpg"
+                alt="Two friendly Picton Psychology clinicians smiling together outside the practice"
+                width={820}
+                height={720}
                 className="h-full w-full object-cover"
                 priority
               />

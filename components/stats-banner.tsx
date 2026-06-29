@@ -28,12 +28,12 @@ export default function StatsBanner() {
           </p>
         </div>
 
-        <div
-          className="mt-10 h-[360px] w-full md:h-[420px]"
-          aria-hidden="true"
-        >
+        <div className="mt-10 h-[360px] w-full md:h-[420px]">
           <JourneyScene />
         </div>
+        <p className="mt-2 text-center text-xs text-muted-foreground/70">
+          Hover over each leaf to explore the steps
+        </p>
 
         {/* Accessible text fallback for the decorative 3D scene */}
         <ol className="sr-only">

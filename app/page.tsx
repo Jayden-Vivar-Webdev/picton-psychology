@@ -10,6 +10,7 @@ import { FaqSection } from "@/components/faq-section";
 import { ContactCta } from "@/components/contact-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
+import StatsBanner from "@/components/stats-banner";
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <StatsBanner />
         <Reveal direction="up">
           <ServicesSection />
         </Reveal>

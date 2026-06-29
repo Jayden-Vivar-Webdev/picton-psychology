@@ -83,7 +83,7 @@ export function HeroSection() {
               variants={itemBase}
               className="max-w-md text-pretty text-lg leading-relaxed text-muted-foreground"
             >
-              At Picton Psychology, we offer warm, judgement-free therapy to
+              At Picton Psychology, we offer warm, judgement free therapy to
               help you navigate life&apos;s challenges and rediscover your sense
               of balance.
             </motion.p>
@@ -121,7 +121,7 @@ export function HeroSection() {
               animate="visible"
             >
               <Image
-                src="/images/calm-therapy-space.png"
+                src="/images/clinic-room.webp"
                 alt="A peaceful, sunlit therapy room with a comfortable armchair and a green plant"
                 width={720}
                 height={820}

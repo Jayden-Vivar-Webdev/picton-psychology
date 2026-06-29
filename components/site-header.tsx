@@ -1,34 +1,54 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Leaf, ChevronDown, Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import { Leaf, ChevronDown, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-type NavLink = { label: string; href: string; description?: string }
-type MenuGroup = { label: string; href: string; links: NavLink[] }
+type NavLink = { label: string; href: string; description?: string };
+type MenuGroup = { label: string; href: string; links: NavLink[] };
 
 const menuGroups: MenuGroup[] = [
   {
     label: "About",
     href: "/about",
     links: [
-      { label: "About the clinic", href: "/about", description: "Our story & values" },
-      { label: "Our team", href: "/our-team", description: "Meet the therapists" },
+      {
+        label: "About the clinic",
+        href: "/about",
+        description: "Our story & values",
+      },
+      {
+        label: "Our team",
+        href: "/our-team",
+        description: "Meet the therapists",
+      },
     ],
   },
   {
     label: "Services",
     href: "/#services",
     links: [
-      { label: "Adult Therapy", href: "/services/adult-therapy", description: "Support for individuals" },
-      { label: "Adolescent Therapy", href: "/services/adolescent-therapy", description: "Care for younger clients" },
+      {
+        label: "Adult Therapy",
+        href: "/services/adult-therapy",
+        description: "Support for individuals",
+      },
+      {
+        label: "Adolescent Therapy",
+        href: "/services/adolescent-therapy",
+        description: "Care for younger clients",
+      },
       {
         label: "Relationship Counselling",
         href: "/services/relationship-counselling",
         description: "Couples & families",
       },
-      { label: "Fees & Rebates", href: "/#services", description: "Pricing & Medicare info" },
+      {
+        label: "Fees & Rebates",
+        href: "/#services",
+        description: "Pricing & Medicare info",
+      },
       { label: "FAQs", href: "/#faq", description: "Common questions" },
     ],
   },
@@ -36,13 +56,41 @@ const menuGroups: MenuGroup[] = [
     label: "Assessments",
     href: "/#services",
     links: [
-      { label: "Assessment Process", href: "/#services", description: "How it works" },
-      { label: "Autism Assessment", href: "/assessments/autism-assessment", description: "Autism spectrum evaluation" },
-      { label: "Specific Learning Disorders", href: "/#services", description: "Dyslexia, dyscalculia & more" },
-      { label: "Intellectual Disability Assessment", href: "/#services", description: "Functioning evaluation" },
-      { label: "Cognitive Assessment", href: "/#services", description: "Memory & thinking skills" },
-      { label: "ADHD Assessment", href: "/#services", description: "Attention & focus evaluation" },
-      { label: "Educational Assessment", href: "/#services", description: "Learning & school support" },
+      {
+        label: "Assessment Process",
+        href: "/#services",
+        description: "How it works",
+      },
+      {
+        label: "Autism Assessment",
+        href: "/assessments/autism-assessment",
+        description: "Autism spectrum evaluation",
+      },
+      {
+        label: "Specific Learning Disorders",
+        href: "/#services",
+        description: "Dyslexia, dyscalculia & more",
+      },
+      {
+        label: "Intellectual Disability Assessment",
+        href: "/#services",
+        description: "Functioning evaluation",
+      },
+      {
+        label: "Cognitive Assessment",
+        href: "/#services",
+        description: "Memory & thinking skills",
+      },
+      {
+        label: "ADHD Assessment",
+        href: "/#services",
+        description: "Attention & focus evaluation",
+      },
+      {
+        label: "Educational Assessment",
+        href: "/#services",
+        description: "Learning & school support",
+      },
       {
         label: "Disability Support Pension Assessment",
         href: "/#services",
@@ -54,9 +102,21 @@ const menuGroups: MenuGroup[] = [
     label: "Workshops",
     href: "/#services",
     links: [
-      { label: "Understanding Trauma", href: "/workshops/understanding-trauma", description: "Recognise & recover" },
-      { label: "Mood & Anxiety", href: "/workshops/mood-and-anxiety", description: "Tools for calm" },
-      { label: "Burnout to Balance", href: "/workshops/burnout-to-balance", description: "Restore your energy" },
+      {
+        label: "Understanding Trauma",
+        href: "/workshops/understanding-trauma",
+        description: "Recognise & recover",
+      },
+      {
+        label: "Mood & Anxiety",
+        href: "/workshops/mood-and-anxiety",
+        description: "Tools for calm",
+      },
+      {
+        label: "Burnout to Balance",
+        href: "/workshops/burnout-to-balance",
+        description: "Restore your energy",
+      },
     ],
   },
   {
@@ -64,15 +124,19 @@ const menuGroups: MenuGroup[] = [
     href: "/blog",
     links: [
       { label: "Blog", href: "/blog", description: "Articles & insights" },
-      { label: "First Appointment", href: "/first-appointment", description: "What to expect" },
+      {
+        label: "First Appointment",
+        href: "/first-appointment",
+        description: "What to expect",
+      },
     ],
   },
-]
+];
 
 const navLinks: NavLink[] = [
   { label: "Approach", href: "/#approach" },
   { label: "Contact", href: "/contact" },
-]
+];
 
 function DesktopMenuGroup({ group }: { group: MenuGroup }) {
   return (
@@ -96,20 +160,30 @@ function DesktopMenuGroup({ group }: { group: MenuGroup }) {
               href={link.href}
               className="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-secondary"
             >
-              <span className="text-sm font-medium text-foreground">{link.label}</span>
+              <span className="text-sm font-medium text-foreground">
+                {link.label}
+              </span>
               {link.description ? (
-                <span className="text-xs text-muted-foreground">{link.description}</span>
+                <span className="text-xs text-muted-foreground">
+                  {link.description}
+                </span>
               ) : null}
             </Link>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-function MobileMenuGroup({ group, onNavigate }: { group: MenuGroup; onNavigate: () => void }) {
-  const [open, setOpen] = useState(false)
+function MobileMenuGroup({
+  group,
+  onNavigate,
+}: {
+  group: MenuGroup;
+  onNavigate: () => void;
+}) {
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="border-b border-border/50 py-1">
@@ -134,35 +208,45 @@ function MobileMenuGroup({ group, onNavigate }: { group: MenuGroup; onNavigate: 
               onClick={onNavigate}
               className="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-secondary"
             >
-              <span className="text-sm font-medium text-foreground">{link.label}</span>
+              <span className="text-sm font-medium text-foreground">
+                {link.label}
+              </span>
               {link.description ? (
-                <span className="text-xs text-muted-foreground">{link.description}</span>
+                <span className="text-xs text-muted-foreground">
+                  {link.description}
+                </span>
               ) : null}
             </Link>
           ))}
         </div>
       ) : null}
     </div>
-  )
+  );
 }
 
 export function SiteHeader() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const closeMobile = () => setMobileOpen(false)
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const closeMobile = () => setMobileOpen(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-4 px-6 py-4">
-        <Link href="/" className="flex items-center gap-2.5" onClick={closeMobile}>
-          <span className="flex size-9 items-center justify-center rounded-full bg-primary/15 text-primary">
-            <Leaf className="size-5" aria-hidden="true" />
-          </span>
-          <span className="font-serif text-lg font-medium tracking-tight text-foreground">
-            Picton Psychology
-          </span>
+      <div className="mx-auto flex h-28 max-w-6xl items-end justify-between gap-4 px-6 py-4">
+        <Link
+          href="/"
+          className="flex h-full items-center gap-2.5"
+          onClick={closeMobile}
+        >
+          <img
+            className="h-full w-full object-contain"
+            src="/images/logo-transparent.webp"
+            alt="Picton Psychology"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+        <nav
+          className="hidden items-center gap-1 xl:flex"
+          aria-label="Main navigation"
+        >
           {menuGroups.map((group) => (
             <DesktopMenuGroup key={group.label} group={group} />
           ))}
@@ -181,7 +265,7 @@ export function SiteHeader() {
           <Button
             render={<Link href="/contact" />}
             nativeButton={false}
-            className="hidden rounded-full px-5 sm:inline-flex"
+            className="hidden rounded-full px-5 xl:inline-flex"
           >
             Book a session
           </Button>
@@ -192,9 +276,13 @@ export function SiteHeader() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className="flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-secondary md:hidden"
+            className="flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-secondary xl:hidden"
           >
-            {mobileOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            {mobileOpen ? (
+              <X className="size-5" aria-hidden="true" />
+            ) : (
+              <Menu className="size-5" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
@@ -202,11 +290,18 @@ export function SiteHeader() {
       {mobileOpen ? (
         <div
           id="mobile-menu"
-          className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-border/60 bg-background/95 backdrop-blur-md md:hidden"
+          className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-border/60 bg-background/95 backdrop-blur-md xl:hidden"
         >
-          <nav className="mx-auto flex max-w-6xl flex-col px-6 py-4" aria-label="Mobile navigation">
+          <nav
+            className="mx-auto flex max-w-6xl flex-col px-6 py-4"
+            aria-label="Mobile navigation"
+          >
             {menuGroups.map((group) => (
-              <MobileMenuGroup key={group.label} group={group} onNavigate={closeMobile} />
+              <MobileMenuGroup
+                key={group.label}
+                group={group}
+                onNavigate={closeMobile}
+              />
             ))}
             {navLinks.map((link) => (
               <Link
@@ -230,5 +325,5 @@ export function SiteHeader() {
         </div>
       ) : null}
     </header>
-  )
+  );
 }

@@ -1,10 +1,49 @@
-const stats = [
-  { value: 12, suffix: "+", label: "Years of compassionate care" },
-  { value: 2400, suffix: "+", label: "Sessions held with warmth" },
-  { value: 96, suffix: "%", label: "Clients feel genuinely heard" },
-  { value: 7, suffix: "", label: "Specialist areas of support" },
-];
+"use client"
+
+import dynamic from "next/dynamic"
+
+const JourneyScene = dynamic(() => import("@/components/journey-scene"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="h-2 w-2 animate-pulse rounded-full bg-primary/50" />
+    </div>
+  ),
+})
 
 export default function StatsBanner() {
-  return <section className="px-6 py-20 bg-secondary/60"></section>;
+  return (
+    <section className="bg-secondary/60 px-6 py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="font-medium text-sm uppercase tracking-wider text-primary">
+            How it works
+          </p>
+          <h2 className="mt-3 text-balance font-serif text-3xl text-foreground md:text-4xl">
+            Your journey with us
+          </h2>
+          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+            Healing happens one gentle step at a time. Here&apos;s the path we&apos;ll
+            walk together, at a pace that feels right for you.
+          </p>
+        </div>
+
+        <div className="mt-10 h-[360px] w-full md:h-[420px]">
+          <JourneyScene />
+        </div>
+        <p className="mt-2 text-center text-xs text-muted-foreground/70">
+          Hover over each leaf to explore the steps
+        </p>
+
+        {/* Accessible text fallback for the decorative 3D scene */}
+        <ol className="sr-only">
+          <li>Reach out — take the first step</li>
+          <li>First session — a gentle conversation</li>
+          <li>Understanding — make sense of things</li>
+          <li>Growth — build new strengths</li>
+          <li>Wellbeing — feel like yourself</li>
+        </ol>
+      </div>
+    </section>
+  )
 }

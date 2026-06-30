@@ -31,9 +31,7 @@ export default function Page() {
         <Reveal direction="up">
           <TeamSection />
         </Reveal>
-        <Reveal direction="right">
-          <ApproachSection />
-        </Reveal>
+        <ApproachSection />
         <Reveal direction="up">
           <TestimonialsSection />
         </Reveal>

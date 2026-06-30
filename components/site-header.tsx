@@ -234,12 +234,17 @@ export function SiteHeader() {
       <div className="mx-auto flex h-28 max-w-6xl items-end justify-between gap-4 px-6 py-4">
         <Link
           href="/"
-          className="flex h-full w-30 items-center gap-2.5 rounded-xl transition-colors dark:bg-foreground/90 dark:px-2 dark:py-1"
+          className="flex h-full w-30 items-center gap-2.5"
           onClick={closeMobile}
         >
           <img
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain dark:hidden"
             src="/images/logo-transparent.webp"
+            alt="Picton Psychology"
+          />
+          <img
+            className="hidden h-full w-full object-contain dark:block"
+            src="/images/logo-dark.png"
             alt="Picton Psychology"
           />
         </Link>

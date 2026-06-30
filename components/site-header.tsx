@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Leaf, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type NavLink = { label: string; href: string; description?: string };
 type MenuGroup = { label: string; href: string; links: NavLink[] };
@@ -237,8 +238,13 @@ export function SiteHeader() {
           onClick={closeMobile}
         >
           <img
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain dark:hidden"
             src="/images/logo-transparent.webp"
+            alt="Picton Psychology"
+          />
+          <img
+            className="hidden h-full w-full origin-left -translate-x-2 scale-150 object-contain dark:block"
+            src="/images/logo-dark.png"
             alt="Picton Psychology"
           />
         </Link>
@@ -262,6 +268,8 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+
           <Button
             render={<Link href="/contact" />}
             nativeButton={false}

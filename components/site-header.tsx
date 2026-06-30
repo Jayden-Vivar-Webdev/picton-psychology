@@ -234,7 +234,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-28 max-w-6xl items-end justify-between gap-4 px-6 py-4">
         <Link
           href="/"
-          className="flex h-full w-30 items-center gap-2.5"
+          className="flex h-full w-30 items-center gap-2.5 rounded-xl transition-colors dark:bg-foreground/90 dark:px-2 dark:py-1"
           onClick={closeMobile}
         >
           <img

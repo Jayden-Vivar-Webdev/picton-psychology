@@ -243,7 +243,7 @@ export function SiteHeader() {
             alt="Picton Psychology"
           />
           <img
-            className="hidden h-full w-full origin-left scale-150 object-contain dark:block"
+            className="hidden h-full w-full origin-left -translate-x-2 scale-150 object-contain dark:block"
             src="/images/logo-dark.png"
             alt="Picton Psychology"
           />

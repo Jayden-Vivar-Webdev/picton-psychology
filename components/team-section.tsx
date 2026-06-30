@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 const team = [
   {
     name: "Lisa Arnold",
@@ -45,6 +45,12 @@ export function TeamSection() {
             chosen for one thing above all: genuine warmth. You&apos;ll be met
             with patience, never judgement.
           </p>
+          <Link
+            className="text-primary font-medium transition duration-200 hover:scale-102"
+            href="#team"
+          >
+            View the full team
+          </Link>
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

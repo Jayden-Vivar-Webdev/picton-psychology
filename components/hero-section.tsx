@@ -6,6 +6,7 @@ import { ArrowRight, Heart } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { delay } from "sanity/migrate";
 
 const container: Variants = {
   hidden: {},
@@ -92,8 +93,17 @@ export function HeroSection() {
               variants={itemBase}
               className="text-balance font-serif text-4xl font-medium leading-tight tracking-tight text-foreground md:text-6xl"
             >
-              A <span className="text-primary">calm space</span> to feel
-              heard and supported
+              A{" "}
+              <div className="inline-block overflow-visible">
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}
+                >
+                  <span className="text-primary">calm space</span>
+                </motion.div>
+              </div>{" "}
+              to feel heard and supported
             </motion.h1>
 
             <motion.p

@@ -35,7 +35,7 @@ const steps = [
   },
 ];
 
-export default function StatsBanner() {
+export default function ProcessBanner() {
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">

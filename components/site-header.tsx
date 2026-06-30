@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Leaf, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type NavLink = { label: string; href: string; description?: string };
 type MenuGroup = { label: string; href: string; links: NavLink[] };
@@ -262,6 +263,8 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+
           <Button
             render={<Link href="/contact" />}
             nativeButton={false}

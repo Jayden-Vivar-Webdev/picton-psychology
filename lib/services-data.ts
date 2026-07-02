@@ -1,39 +1,43 @@
 export type ServiceContent = {
-  slug: string
-  eyebrow: string
-  title: string
-  heroDescription: string
-  heroImage: string
-  heroImageAlt: string
+  slug: string;
+  eyebrow: string;
+  title: string;
+  heroDescription: string;
+  heroImage: string;
+  heroImageAlt: string;
   overview: {
-    heading: string
-    paragraphs: string[]
-  }
+    heading: string;
+    paragraphs: string[];
+  };
   helpsWith: {
-    heading: string
-    intro: string
-    items: { title: string; description: string }[]
-  }
+    heading: string;
+    intro: string;
+    items: { title: string; description: string }[];
+  };
   steps: {
-    heading: string
-    intro: string
-    items: { title: string; description: string }[]
-  }
-  faqs: { question: string; answer: string }[]
+    heading: string;
+    intro: string;
+    items: { title: string; description: string }[];
+  };
+  faqs: { question: string; answer: string }[];
+  notes: {
+    title: string;
+    points: string[];
+  };
   cta: {
-    heading: string
-    description: string
-  }
-}
+    heading: string;
+    description: string;
+  };
+};
 
 export const services: ServiceContent[] = [
   {
-    slug: "adult-therapy",
+    slug: "individual-therapy",
     eyebrow: "Therapy services",
-    title: "Adult Therapy",
+    title: "Individual therapy",
     heroDescription:
       "One-on-one support for life's heavier seasons. Whether you're navigating anxiety, low mood, stress, or simply feeling stuck, we offer a calm, confidential space to be heard and to heal at your own pace.",
-    heroImage: "/images/service-adult-therapy.png",
+    heroImage: "/images/clinic-wallshot.jpg",
     heroImageAlt:
       "A calm, softly lit therapy room with a comfortable armchair beside a sunlit window",
     overview: {
@@ -82,7 +86,8 @@ export const services: ServiceContent[] = [
     },
     steps: {
       heading: "What to expect",
-      intro: "Starting therapy can feel daunting. Here's how it gently unfolds.",
+      intro:
+        "Starting therapy can feel daunting. Here's how it gently unfolds.",
       items: [
         {
           title: "Reach out",
@@ -123,6 +128,10 @@ export const services: ServiceContent[] = [
           "No referral is required to see us privately. If you'd like to claim a Medicare rebate, a GP Mental Health Care Plan can help — we're happy to guide you.",
       },
     ],
+    notes: {
+      title: "testing",
+      points: ["text contents as an idea or points"],
+    },
     cta: {
       heading: "Ready when you are",
       description:
@@ -226,6 +235,10 @@ export const services: ServiceContent[] = [
           "Sometimes, yes. Depending on your teen's needs, we may include family sessions — always in a way that respects their comfort.",
       },
     ],
+    notes: {
+      title: "testing",
+      points: ["text contents as an idea or points"],
+    },
     cta: {
       heading: "Help your teen feel heard",
       description:
@@ -286,7 +299,8 @@ export const services: ServiceContent[] = [
     },
     steps: {
       heading: "What to expect",
-      intro: "A supportive process designed to help you both feel safe and heard.",
+      intro:
+        "A supportive process designed to help you both feel safe and heard.",
       items: [
         {
           title: "A shared first session",
@@ -327,14 +341,18 @@ export const services: ServiceContent[] = [
           "That's completely okay. Counselling can help you find clarity, whether that leads to reconnecting or to parting with kindness and respect.",
       },
     ],
+    notes: {
+      title: "testing",
+      points: ["text contents as an idea or points"],
+    },
     cta: {
       heading: "Take the next step together",
       description:
         "Reaching out is a sign of care, not failure. When you're both ready, we're here to help you find your way back to one another.",
     },
   },
-]
+];
 
 export function getServiceBySlug(slug: string) {
-  return services.find((service) => service.slug === slug)
+  return services.find((service) => service.slug === slug);
 }

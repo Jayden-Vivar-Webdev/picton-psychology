@@ -1,32 +1,64 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import {
+  ArrowRight,
+  Brain,
+  Check,
+  ClipboardList,
+  FileText,
+  Heart,
+  Leaf,
+  MessageCircleHeart,
+  Search,
+  Shield,
+  Sparkles,
+  Sprout,
+  Users,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { FaqAccordion } from "@/components/faq-accordion";
 import type { ServiceContent } from "@/lib/services-data";
+import { getRelatedServices } from "@/lib/services-data";
 import BackgroundImage from "./background-image";
 
+const approachIcons: Record<string, LucideIcon> = {
+  brain: Brain,
+  sprout: Sprout,
+  heart: Heart,
+  shield: Shield,
+  sparkles: Sparkles,
+  leaf: Leaf,
+  "message-circle": MessageCircleHeart,
+  users: Users,
+  clipboard: ClipboardList,
+  search: Search,
+  "file-text": FileText,
+};
+
 export function ServicePageTemplate({ service }: { service: ServiceContent }) {
+  const related = getRelatedServices(service.slug);
+
   return (
     <div className="flex min-h-dvh flex-col">
       <SiteHeader />
       <main className="flex-1">
-        {/* Hero */}
+        {/* Hero + Quick Facts */}
         <section className="relative overflow-hidden px-6 pt-16 pb-20 md:pt-20">
           <BackgroundImage
             imagesrc="/images/nature-bridge-background.jpg"
-            imagealt="Peacful Image"
+            imagealt="Peaceful natural landscape"
           />
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -left-24 top-0 size-72 rounded-full bg-primary/10 blur-3xl animate-willow-drift"
           />
 
-          <div className="relative mx-auto flex flex-col lg:flex-row max-w-6xl items-center justify-star gap-12">
-            <div className="flex flex-col items-start gap-6 ">
+          <div className="relative mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[1.4fr_1fr]">
+            <div className="flex flex-col items-start gap-6">
               <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
                 {service.eyebrow}
               </span>
@@ -37,7 +69,7 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 {service.heroDescription}
               </p>
 
-              <div className="overflow-hidden aspect-3/2 rounded-[2.5rem] border border-border/60 shadow-sm">
+              <div className="mt-2 aspect-3/2 w-full overflow-hidden rounded-[2.5rem] border border-border/60 shadow-sm">
                 <Image
                   src={service.heroImage || "/placeholder.svg"}
                   alt={service.heroImageAlt}
@@ -48,44 +80,48 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 />
               </div>
             </div>
-            {/* Quick CTA Card */}
-            <div className="flex flex-col gap-5 shrink-0 w-full lg:w-auto rounded-[2rem] border border-border/60 bg-card p-7 md:p-9">
+
+            {/* Quick Facts card */}
+            <aside className="flex w-full flex-col gap-5 rounded-[2rem] border border-border/60 bg-card p-7 shadow-sm md:p-9 lg:sticky lg:top-32">
               <span className="inline-block self-start rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
-                Notes
+                Quick facts
               </span>
 
-              <div className="flex flex-col gap-2">
-                <span className="text-sm font-medium text-foreground">
-                  {service.notes.title}
-                </span>
-              </div>
+              <dl className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
+                {service.quickFacts.map((fact) => (
+                  <div key={fact.label} className="flex flex-col gap-1">
+                    <dt className="text-sm text-muted-foreground">
+                      {fact.label}
+                    </dt>
+                    <dd className="font-serif text-lg font-medium text-foreground">
+                      {fact.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
 
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {service.notes.points}
-              </p>
+              <div className="my-1 h-px w-full bg-border/60" />
 
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-col gap-3">
                 <Button
-                  render={<Link href="/#contact" />}
+                  render={<Link href="/contact" />}
                   nativeButton={false}
                   size="lg"
-                  className="rounded-full w-full"
+                  className="w-full rounded-full"
                 >
-                  Book a first conversation
+                  Book an appointment
                 </Button>
                 <Button
-                  render={<Link href="/#contact" />}
+                  render={<Link href="/contact" />}
                   nativeButton={false}
                   size="lg"
                   variant="outline"
-                  className="rounded-full w-full"
+                  className="w-full rounded-full"
                 >
                   Ask a question
                 </Button>
               </div>
-            </div>
-
-            <div className="relative"></div>
+            </aside>
           </div>
         </section>
 
@@ -108,84 +144,167 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
           </div>
         </section>
 
-        {/* What we help with */}
+        {/* Is this right for you? */}
         <section className="px-6 py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div className="lg:sticky lg:top-32">
+              <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
+                Is this right for you?
+              </p>
+              <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                {service.rightForYou.heading}
+              </h2>
+              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+                {service.rightForYou.intro}
+              </p>
+            </div>
+            <ul className="grid gap-4 sm:grid-cols-2">
+              {service.rightForYou.items.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-5"
+                >
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <Check className="size-4" aria-hidden="true" />
+                  </span>
+                  <span className="text-pretty leading-relaxed text-foreground">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Focus points */}
+        <section className="bg-secondary/40 px-6 py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium uppercase tracking-wide text-primary">
-                How we can help
+                Focus points
               </p>
               <h2 className="mt-4 text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-                {service.helpsWith.heading}
+                {service.focusPoints.heading}
               </h2>
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                {service.helpsWith.intro}
+                {service.focusPoints.intro}
               </p>
             </div>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {service.helpsWith.items.map((item) => (
-                <article
-                  key={item.title}
-                  className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
-                >
-                  <span className="flex size-10 items-center justify-center rounded-2xl bg-primary/12 text-primary">
-                    <Check className="size-5" aria-hidden="true" />
+            <div className="mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-8 sm:grid-cols-2">
+              {service.focusPoints.items.map((item, i) => (
+                <article key={item.title} className="flex gap-4">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 font-serif text-sm font-medium text-primary">
+                    {i + 1}
                   </span>
-                  <h3 className="font-serif text-xl font-medium text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-pretty leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <div className="flex flex-col gap-1.5 border-b border-border/60 pb-6">
+                    <h3 className="font-serif text-lg font-medium text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="text-pretty leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* What to expect */}
-        <section className="relative overflow-hidden bg-secondary/40 px-6 py-20">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-24 bottom-0 size-72 rounded-full bg-primary/10 blur-3xl animate-willow-drift-slow"
-          />
-          <div className="relative mx-auto max-w-6xl">
+        {/* Approaches we draw on */}
+        <section className="px-6 py-20">
+          <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium uppercase tracking-wide text-primary">
-                The journey
+                How we work
               </p>
               <h2 className="mt-4 text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-                {service.steps.heading}
+                {service.approaches.heading}
               </h2>
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                {service.steps.intro}
+                {service.approaches.intro}
               </p>
             </div>
-            <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {service.steps.items.map((step, i) => (
-                <li
-                  key={step.title}
-                  className="flex flex-col gap-3 rounded-3xl border border-border/60 bg-card p-7 shadow-sm"
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
+              {service.approaches.items.map((item) => {
+                const Icon = approachIcons[item.icon] ?? Sprout;
+                return (
+                  <article
+                    key={item.title}
+                    className="flex flex-col gap-4 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
+                  >
+                    <span className="flex size-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                      <Icon className="size-6" aria-hidden="true" />
+                    </span>
+                    <h3 className="font-serif text-xl font-medium text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="text-pretty leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Fees & rebates */}
+        <section className="bg-secondary/40 px-6 py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-10 rounded-[2.5rem] border border-border/60 bg-card p-8 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div className="flex flex-col items-start gap-5">
+                <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+                  Fees & rebates
+                </span>
+                <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                  {service.fees.heading}
+                </h2>
+                <div className="flex flex-col gap-4">
+                  {service.fees.paragraphs.map((paragraph) => (
+                    <p
+                      key={paragraph}
+                      className="text-pretty leading-relaxed text-muted-foreground"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                <Button
+                  render={<Link href="/contact" />}
+                  nativeButton={false}
+                  size="lg"
+                  className="mt-2 rounded-full"
                 >
-                  <span className="flex size-11 items-center justify-center rounded-full bg-primary/15 font-serif text-lg font-medium text-primary">
-                    {i + 1}
-                  </span>
-                  <h3 className="font-serif text-lg font-medium text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="text-pretty leading-relaxed text-muted-foreground">
-                    {step.description}
-                  </p>
-                </li>
-              ))}
-            </ol>
+                  Talk to us about fees
+                </Button>
+              </div>
+
+              <dl className="grid grid-cols-2 gap-4">
+                {service.fees.items.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-secondary/40 p-5"
+                  >
+                    <span className="flex size-9 items-center justify-center rounded-full bg-primary/12 font-serif text-base font-medium text-primary">
+                      $
+                    </span>
+                    <dt className="text-sm text-muted-foreground">
+                      {item.label}
+                    </dt>
+                    <dd className="font-serif text-lg font-medium text-foreground">
+                      {item.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </section>
 
         {/* FAQ */}
         <section className="px-6 py-20">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
                 Good to know
               </p>
@@ -201,8 +320,45 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="px-6 pb-20">
+        {/* Related services */}
+        {related.length > 0 ? (
+          <section className="bg-secondary/40 px-6 py-20">
+            <div className="mx-auto max-w-6xl">
+              <div className="mx-auto mb-12 max-w-2xl text-center">
+                <p className="text-sm font-medium uppercase tracking-wide text-primary">
+                  Explore more
+                </p>
+                <h2 className="mt-4 text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                  Related services
+                </h2>
+              </div>
+              <div className="grid gap-5 md:grid-cols-3">
+                {related.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/services/${item.slug}`}
+                    className="group flex items-center justify-between gap-4 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
+                  >
+                    <div className="flex flex-col gap-1">
+                      <span className="text-xs font-medium uppercase tracking-wide text-primary">
+                        {item.eyebrow}
+                      </span>
+                      <span className="font-serif text-xl font-medium text-foreground">
+                        {item.title}
+                      </span>
+                    </div>
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
+                      <ArrowRight className="size-5" aria-hidden="true" />
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {/* Closing CTA */}
+        <section className="px-6 py-20">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 rounded-[2.5rem] border border-border/60 bg-secondary/50 p-10 text-center md:p-14">
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               {service.cta.heading}
@@ -211,12 +367,12 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
               {service.cta.description}
             </p>
             <Button
-              render={<Link href="/#contact" />}
+              render={<Link href="/contact" />}
               nativeButton={false}
               size="lg"
               className="rounded-full"
             >
-              Get in touch
+              Book an appointment
             </Button>
           </div>
         </section>

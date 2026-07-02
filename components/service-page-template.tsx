@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { Reveal, RevealItem } from "@/components/reveal";
 import type { ServiceContent } from "@/lib/services-data";
 import { getRelatedServices } from "@/lib/services-data";
 import BackgroundImage from "./background-image";
@@ -58,76 +59,90 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
           />
 
           <div className="relative mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[1.4fr_1fr]">
-            <div className="flex flex-col items-start gap-6">
-              <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
-                {service.eyebrow}
-              </span>
-              <h1 className="text-balance font-serif text-4xl font-medium tracking-tight text-foreground md:text-5xl">
-                {service.title}
-              </h1>
-              <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-                {service.heroDescription}
-              </p>
+            <Reveal stagger className="flex flex-col items-start gap-6">
+              <RevealItem>
+                <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+                  {service.eyebrow}
+                </span>
+              </RevealItem>
+              <RevealItem>
+                <h1 className="text-balance font-serif text-4xl font-medium tracking-tight text-foreground md:text-5xl">
+                  {service.title}
+                </h1>
+              </RevealItem>
+              <RevealItem>
+                <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
+                  {service.heroDescription}
+                </p>
+              </RevealItem>
 
-              <div className="mt-2 aspect-3/2 w-full overflow-hidden rounded-[2.5rem] border border-border/60 shadow-sm">
-                <Image
-                  src={service.heroImage || "/placeholder.svg"}
-                  alt={service.heroImageAlt}
-                  width={760}
-                  height={620}
-                  priority
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
+              <RevealItem className="w-full">
+                <div className="mt-2 aspect-3/2 w-full overflow-hidden rounded-[2.5rem] border border-border/60 shadow-sm">
+                  <Image
+                    src={service.heroImage || "/placeholder.svg"}
+                    alt={service.heroImageAlt}
+                    width={760}
+                    height={620}
+                    priority
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </RevealItem>
+            </Reveal>
 
             {/* Quick Facts card */}
-            <aside className="flex w-full flex-col gap-5 rounded-[2rem] border border-border/60 bg-card p-7 shadow-sm md:p-9 lg:sticky lg:top-32">
-              <span className="inline-block self-start rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
-                Quick facts
-              </span>
+            <Reveal
+              direction="left"
+              delay={0.2}
+              className="w-full lg:sticky lg:top-32"
+            >
+              <aside className="flex w-full flex-col gap-5 rounded-[2rem] border border-border/60 bg-card p-7 shadow-sm md:p-9">
+                <span className="inline-block self-start rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+                  Quick facts
+                </span>
 
-              <dl className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
-                {service.quickFacts.map((fact) => (
-                  <div key={fact.label} className="flex flex-col gap-1">
-                    <dt className="text-sm text-muted-foreground">
-                      {fact.label}
-                    </dt>
-                    <dd className="font-serif text-lg font-medium text-foreground">
-                      {fact.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+                <dl className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
+                  {service.quickFacts.map((fact) => (
+                    <div key={fact.label} className="flex flex-col gap-1">
+                      <dt className="text-sm text-muted-foreground">
+                        {fact.label}
+                      </dt>
+                      <dd className="font-serif text-lg font-medium text-foreground">
+                        {fact.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
 
-              <div className="my-1 h-px w-full bg-border/60" />
+                <div className="my-1 h-px w-full bg-border/60" />
 
-              <div className="flex flex-col gap-3">
-                <Button
-                  render={<Link href="/contact" />}
-                  nativeButton={false}
-                  size="lg"
-                  className="w-full rounded-full"
-                >
-                  Book an appointment
-                </Button>
-                <Button
-                  render={<Link href="/contact" />}
-                  nativeButton={false}
-                  size="lg"
-                  variant="outline"
-                  className="w-full rounded-full"
-                >
-                  Ask a question
-                </Button>
-              </div>
-            </aside>
+                <div className="flex flex-col gap-3">
+                  <Button
+                    render={<Link href="/contact" />}
+                    nativeButton={false}
+                    size="lg"
+                    className="w-full rounded-full"
+                  >
+                    Book an appointment
+                  </Button>
+                  <Button
+                    render={<Link href="/contact" />}
+                    nativeButton={false}
+                    size="lg"
+                    variant="outline"
+                    className="w-full rounded-full"
+                  >
+                    Ask a question
+                  </Button>
+                </div>
+              </aside>
+            </Reveal>
           </div>
         </section>
 
         {/* Overview */}
         <section className="bg-secondary/40 px-6 py-20">
-          <div className="mx-auto max-w-3xl text-center">
+          <Reveal className="mx-auto max-w-3xl text-center">
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               {service.overview.heading}
             </h2>
@@ -141,13 +156,13 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 </p>
               ))}
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* Is this right for you? */}
         <section className="px-6 py-20">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div className="lg:sticky lg:top-32">
+            <Reveal direction="right" className="lg:sticky lg:top-32">
               <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
                 Is this right for you?
               </p>
@@ -157,11 +172,12 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
                 {service.rightForYou.intro}
               </p>
-            </div>
-            <ul className="grid gap-4 sm:grid-cols-2">
+            </Reveal>
+            <Reveal stagger as="ul" className="grid gap-4 sm:grid-cols-2">
               {service.rightForYou.items.map((item) => (
-                <li
+                <RevealItem
                   key={item}
+                  as="li"
                   className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-5"
                 >
                   <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -170,16 +186,16 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                   <span className="text-pretty leading-relaxed text-foreground">
                     {item}
                   </span>
-                </li>
+                </RevealItem>
               ))}
-            </ul>
+            </Reveal>
           </div>
         </section>
 
         {/* Focus points */}
         <section className="bg-secondary/40 px-6 py-20">
           <div className="mx-auto max-w-6xl">
-            <div className="mx-auto max-w-2xl text-center">
+            <Reveal className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium uppercase tracking-wide text-primary">
                 Focus points
               </p>
@@ -189,10 +205,13 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
                 {service.focusPoints.intro}
               </p>
-            </div>
-            <div className="mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-8 sm:grid-cols-2">
+            </Reveal>
+            <Reveal
+              stagger
+              className="mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-8 sm:grid-cols-2"
+            >
               {service.focusPoints.items.map((item, i) => (
-                <article key={item.title} className="flex gap-4">
+                <RevealItem key={item.title} className="flex gap-4">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 font-serif text-sm font-medium text-primary">
                     {i + 1}
                   </span>
@@ -204,16 +223,16 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                       {item.description}
                     </p>
                   </div>
-                </article>
+                </RevealItem>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* Approaches we draw on */}
         <section className="px-6 py-20">
           <div className="mx-auto max-w-6xl">
-            <div className="mx-auto max-w-2xl text-center">
+            <Reveal className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium uppercase tracking-wide text-primary">
                 How we work
               </p>
@@ -223,12 +242,12 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
                 {service.approaches.intro}
               </p>
-            </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-3">
+            </Reveal>
+            <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
               {service.approaches.items.map((item) => {
                 const Icon = approachIcons[item.icon] ?? Sprout;
                 return (
-                  <article
+                  <RevealItem
                     key={item.title}
                     className="flex flex-col gap-4 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
                   >
@@ -241,16 +260,16 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                     <p className="text-pretty leading-relaxed text-muted-foreground">
                       {item.description}
                     </p>
-                  </article>
+                  </RevealItem>
                 );
               })}
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* Fees & rebates */}
         <section className="bg-secondary/40 px-6 py-20">
-          <div className="mx-auto max-w-6xl">
+          <Reveal className="mx-auto max-w-6xl">
             <div className="grid gap-10 rounded-[2.5rem] border border-border/60 bg-card p-8 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div className="flex flex-col items-start gap-5">
                 <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
@@ -279,32 +298,33 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 </Button>
               </div>
 
-              <dl className="grid grid-cols-2 gap-4">
+              <Reveal stagger as="ul" className="grid grid-cols-2 gap-4">
                 {service.fees.items.map((item) => (
-                  <div
+                  <RevealItem
                     key={item.label}
+                    as="li"
                     className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-secondary/40 p-5"
                   >
                     <span className="flex size-9 items-center justify-center rounded-full bg-primary/12 font-serif text-base font-medium text-primary">
                       $
                     </span>
-                    <dt className="text-sm text-muted-foreground">
+                    <span className="text-sm text-muted-foreground">
                       {item.label}
-                    </dt>
-                    <dd className="font-serif text-lg font-medium text-foreground">
+                    </span>
+                    <span className="font-serif text-lg font-medium text-foreground">
                       {item.value}
-                    </dd>
-                  </div>
+                    </span>
+                  </RevealItem>
                 ))}
-              </dl>
+              </Reveal>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* FAQ */}
         <section className="px-6 py-20">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="lg:sticky lg:top-32 lg:self-start">
+            <Reveal direction="right" className="lg:sticky lg:top-32 lg:self-start">
               <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
                 Good to know
               </p>
@@ -315,8 +335,10 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 A few of the things people often wonder about before getting
                 started.
               </p>
-            </div>
-            <FaqAccordion faqs={service.faqs} />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <FaqAccordion faqs={service.faqs} />
+            </Reveal>
           </div>
         </section>
 
@@ -324,42 +346,43 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
         {related.length > 0 ? (
           <section className="bg-secondary/40 px-6 py-20">
             <div className="mx-auto max-w-6xl">
-              <div className="mx-auto mb-12 max-w-2xl text-center">
+              <Reveal className="mx-auto mb-12 max-w-2xl text-center">
                 <p className="text-sm font-medium uppercase tracking-wide text-primary">
                   Explore more
                 </p>
                 <h2 className="mt-4 text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
                   Related services
                 </h2>
-              </div>
-              <div className="grid gap-5 md:grid-cols-3">
+              </Reveal>
+              <Reveal stagger className="grid gap-5 md:grid-cols-3">
                 {related.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={`/services/${item.slug}`}
-                    className="group flex items-center justify-between gap-4 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
-                  >
-                    <div className="flex flex-col gap-1">
-                      <span className="text-xs font-medium uppercase tracking-wide text-primary">
-                        {item.eyebrow}
+                  <RevealItem key={item.slug}>
+                    <Link
+                      href={`/services/${item.slug}`}
+                      className="group flex items-center justify-between gap-4 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
+                    >
+                      <div className="flex flex-col gap-1">
+                        <span className="text-xs font-medium uppercase tracking-wide text-primary">
+                          {item.eyebrow}
+                        </span>
+                        <span className="font-serif text-xl font-medium text-foreground">
+                          {item.title}
+                        </span>
+                      </div>
+                      <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
+                        <ArrowRight className="size-5" aria-hidden="true" />
                       </span>
-                      <span className="font-serif text-xl font-medium text-foreground">
-                        {item.title}
-                      </span>
-                    </div>
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
-                      <ArrowRight className="size-5" aria-hidden="true" />
-                    </span>
-                  </Link>
+                    </Link>
+                  </RevealItem>
                 ))}
-              </div>
+              </Reveal>
             </div>
           </section>
         ) : null}
 
         {/* Closing CTA */}
         <section className="px-6 py-20">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 rounded-[2.5rem] border border-border/60 bg-secondary/50 p-10 text-center md:p-14">
+          <Reveal className="mx-auto flex max-w-4xl flex-col items-center gap-5 rounded-[2.5rem] border border-border/60 bg-secondary/50 p-10 text-center md:p-14">
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               {service.cta.heading}
             </h2>
@@ -374,7 +397,7 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
             >
               Book an appointment
             </Button>
-          </div>
+          </Reveal>
         </section>
       </main>
       <SiteFooter />

@@ -8,14 +8,14 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { delay } from "sanity/migrate";
 
-const container: Variants = {
+export const container: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.12, delayChildren: 0.1 },
   },
 };
 
-const item = (reduceMotion: boolean): Variants => ({
+export const item = (reduceMotion: boolean): Variants => ({
   hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
@@ -24,7 +24,7 @@ const item = (reduceMotion: boolean): Variants => ({
   },
 });
 
-const image = (reduceMotion: boolean): Variants => ({
+export const image = (reduceMotion: boolean): Variants => ({
   hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 },
   visible: {
     opacity: 1,
@@ -33,7 +33,7 @@ const image = (reduceMotion: boolean): Variants => ({
   },
 });
 
-const card = (reduceMotion: boolean): Variants => ({
+export const card = (reduceMotion: boolean): Variants => ({
   hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.9 },
   visible: {
     opacity: 1,

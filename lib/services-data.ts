@@ -44,7 +44,7 @@ export const services: ServiceContent[] = [
     title: "Individual therapy",
     heroDescription:
       "One-on-one support for life's heavier seasons. Whether you're navigating anxiety, low mood, stress, or simply feeling stuck, we offer a calm, confidential space to be heard and to heal at your own pace.",
-    heroImage: "/images/service-adult-therapy.png",
+    heroImage: "/images/clinic-wallshot.jpg",
     heroImageAlt:
       "A calm, softly lit therapy room with a comfortable armchair beside a sunlit window",
     quickFacts: [
@@ -56,14 +56,14 @@ export const services: ServiceContent[] = [
     overview: {
       heading: "A space that's entirely yours",
       paragraphs: [
-        "Adult life can quietly pile up — work, relationships, family, and the weight of expectations we place on ourselves. Sometimes it helps to have a space outside of it all, where you can slow down and make sense of what you're feeling.",
-        "Our individual therapy sessions are warm, unhurried, and shaped entirely around you. There's no script and no judgement — just a qualified therapist who genuinely listens and helps you find your footing again.",
+        "Adult life can quietly pile up work, relationships, family, and the weight of expectations we place on ourselves. Sometimes it helps to have a space outside of it all, where you can slow down and make sense of what you're feeling.",
+        "Our individual therapy sessions are warm, unhurried, and shaped entirely around you. There's no script and no judgement just a qualified therapist who genuinely listens and helps you find your footing again.",
       ],
     },
     rightForYou: {
       heading: "You might relate if…",
       intro:
-        "People come to individual therapy for all sorts of reasons. You don't need to be in crisis to reach out — you may recognise some of these.",
+        "People come to individual therapy for all sorts of reasons. You don't need to be in crisis to reach out you may recognise some of these.",
       items: [
         "Worry or a racing mind keeps you up at night",
         "You feel flat, unmotivated, or not quite yourself",
@@ -86,7 +86,7 @@ export const services: ServiceContent[] = [
         {
           title: "Low mood & depression",
           description:
-            "Gentle, evidence-based support to help you feel more like yourself again.",
+            "Gentle, evidence based support to help you feel more like yourself again.",
         },
         {
           title: "Burnout & overwhelm",
@@ -106,14 +106,14 @@ export const services: ServiceContent[] = [
         {
           title: "Life transitions",
           description:
-            "Navigate big changes — career, relationships, or a shifting sense of purpose.",
+            "Navigate big changes career, relationships, or a shifting sense of purpose.",
         },
       ],
     },
     approaches: {
       heading: "Approaches we draw on",
       intro:
-        "We tailor our approach to you, drawing on evidence-based frameworks that suit your goals and the way you think.",
+        "We tailor our approach to you, drawing on evidence based frameworks that suit your goals and the way you think.",
       items: [
         {
           icon: "brain",
@@ -157,18 +157,18 @@ export const services: ServiceContent[] = [
       {
         question: "Do you offer online sessions?",
         answer:
-          "Yes. We offer both in-person and secure online video sessions, so you can choose whatever feels most comfortable.",
+          "Yes. We offer both in person and secure online video sessions, so you can choose whatever feels most comfortable.",
       },
       {
         question: "Will I need a referral?",
         answer:
-          "No referral is required to see us privately. If you'd like to claim a Medicare rebate, a GP Mental Health Care Plan can help — we're happy to guide you.",
+          "No referral is required to see us privately. If you'd like to claim a Medicare rebate, a GP Mental Health Care Plan can help we're happy to guide you.",
       },
     ],
     cta: {
       heading: "Ready when you are",
       description:
-        "Taking the first step is often the hardest part. When you feel ready, we're here — gently, patiently, and without judgement.",
+        "Taking the first step is often the hardest part. When you feel ready, we're here gently, patiently, and without judgement.",
     },
   },
   {

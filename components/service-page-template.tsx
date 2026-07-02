@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   Brain,
@@ -16,7 +18,6 @@ import {
   Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -25,6 +26,8 @@ import { Reveal, RevealItem } from "@/components/reveal";
 import type { ServiceContent } from "@/lib/services-data";
 import { getRelatedServices } from "@/lib/services-data";
 import BackgroundImage from "./background-image";
+import { image, container, item, card } from "./hero-section";
+import { useEffect, useState } from "react";
 
 const approachIcons: Record<string, LucideIcon> = {
   brain: Brain,
@@ -43,12 +46,22 @@ const approachIcons: Record<string, LucideIcon> = {
 export function ServicePageTemplate({ service }: { service: ServiceContent }) {
   const related = getRelatedServices(service.slug);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const reduceMotion = useReducedMotion();
+  const itemBase = item(!!reduceMotion);
+  const imageBase = image(!!reduceMotion);
+  const cardBase = card(!!reduceMotion);
   return (
     <div className="flex min-h-dvh flex-col">
       <SiteHeader />
       <main className="flex-1">
         {/* Hero + Quick Facts */}
-        <section className="relative overflow-hidden px-6 pt-16 pb-20 md:pt-20">
+        <section className="relative px-6 pt-16 pb-20 md:pt-20">
           <BackgroundImage
             imagesrc="/images/nature-bridge-background.jpg"
             imagealt="Peaceful natural landscape"
@@ -59,25 +72,44 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
           />
 
           <div className="relative mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[1.4fr_1fr]">
-            <Reveal stagger className="flex flex-col items-start gap-6">
-              <RevealItem>
-                <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+            <motion.div
+              variants={container}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col items-start gap-6"
+            >
+              <div>
+                <motion.span
+                  variants={itemBase}
+                  className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground"
+                >
                   {service.eyebrow}
-                </span>
-              </RevealItem>
-              <RevealItem>
-                <h1 className="text-balance font-serif text-4xl font-medium tracking-tight text-foreground md:text-5xl">
+                </motion.span>
+              </div>
+              <div>
+                <motion.h1
+                  variants={itemBase}
+                  className="text-balance font-serif text-4xl font-medium tracking-tight text-foreground md:text-5xl"
+                >
                   {service.title}
-                </h1>
-              </RevealItem>
-              <RevealItem>
-                <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
+                </motion.h1>
+              </div>
+              <div>
+                <motion.p
+                  variants={itemBase}
+                  className="text-pretty text-lg leading-relaxed text-muted-foreground"
+                >
                   {service.heroDescription}
-                </p>
-              </RevealItem>
+                </motion.p>
+              </div>
 
-              <RevealItem className="w-full">
-                <div className="mt-2 aspect-3/2 w-full overflow-hidden rounded-[2.5rem] border border-border/60 shadow-sm">
+              <div className="w-full">
+                <motion.div
+                  variants={itemBase}
+                  initial="hidden"
+                  animate="visible"
+                  className="mt-2 aspect-3/2 w-full overflow-hidden rounded-[2.5rem] border border-border/60 shadow-sm"
+                >
                   <Image
                     src={service.heroImage || "/placeholder.svg"}
                     alt={service.heroImageAlt}
@@ -86,15 +118,16 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                     priority
                     className="h-full w-full object-cover"
                   />
-                </div>
-              </RevealItem>
-            </Reveal>
+                </motion.div>
+              </div>
+            </motion.div>
 
             {/* Quick Facts card */}
-            <Reveal
-              direction="left"
-              delay={0.2}
-              className="w-full lg:sticky lg:top-32"
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}
+              className="w-full lg:sticky lg:top-42"
             >
               <aside className="flex w-full flex-col gap-5 rounded-[2rem] border border-border/60 bg-card p-7 shadow-sm md:p-9">
                 <span className="inline-block self-start rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
@@ -136,66 +169,76 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                   </Button>
                 </div>
               </aside>
-            </Reveal>
+            </motion.div>
           </div>
         </section>
 
         {/* Overview */}
-        <section className="bg-secondary/40 px-6 py-20">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-              {service.overview.heading}
-            </h2>
-            <div className="mt-6 flex flex-col gap-4">
-              {service.overview.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="text-pretty leading-relaxed text-muted-foreground"
-                >
-                  {paragraph}
-                </p>
-              ))}
+        <Reveal direction="left">
+          <section className="bg-secondary/40 px-6 py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                {service.overview.heading}
+              </h2>
+              <div className="mt-6 flex flex-col gap-4">
+                {service.overview.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="text-pretty leading-relaxed text-muted-foreground"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
-          </Reveal>
-        </section>
+          </section>
+        </Reveal>
 
         {/* Is this right for you? */}
-        <section className="px-6 py-20">
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <Reveal direction="right" className="lg:sticky lg:top-32">
-              <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
-                Is this right for you?
-              </p>
-              <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-                {service.rightForYou.heading}
-              </h2>
-              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                {service.rightForYou.intro}
-              </p>
-            </Reveal>
-            <Reveal stagger as="ul" className="grid gap-4 sm:grid-cols-2">
-              {service.rightForYou.items.map((item) => (
-                <RevealItem
-                  key={item}
-                  as="li"
-                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-5"
-                >
-                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <Check className="size-4" aria-hidden="true" />
-                  </span>
-                  <span className="text-pretty leading-relaxed text-foreground">
-                    {item}
-                  </span>
-                </RevealItem>
-              ))}
-            </Reveal>
-          </div>
-        </section>
+        <Reveal direction="up">
+          <section className="px-6 py-20">
+            <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div className="lg:sticky lg:top-32">
+                <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
+                  Is this right for you?
+                </p>
+                <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                  {service.rightForYou.heading}
+                </h2>
+                <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+                  {service.rightForYou.intro}
+                </p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {service.rightForYou.items.map((item, index) => (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: (index * 2) / 10,
+                      ease: "easeOut",
+                    }}
+                    key={item}
+                    className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-5"
+                  >
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                      <Check className="size-4" aria-hidden="true" />
+                    </span>
+                    <span className="text-pretty leading-relaxed text-foreground">
+                      {item}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Reveal>
 
         {/* Focus points */}
-        <section className="bg-secondary/40 px-6 py-20">
+        <Reveal direction="up" className="bg-secondary/40 px-6 py-20">
           <div className="mx-auto max-w-6xl">
-            <Reveal className="mx-auto max-w-2xl text-center">
+            <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium uppercase tracking-wide text-primary">
                 Focus points
               </p>
@@ -205,13 +248,10 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
                 {service.focusPoints.intro}
               </p>
-            </Reveal>
-            <Reveal
-              stagger
-              className="mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-8 sm:grid-cols-2"
-            >
+            </div>
+            <div className="mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-8 sm:grid-cols-2">
               {service.focusPoints.items.map((item, i) => (
-                <RevealItem key={item.title} className="flex gap-4">
+                <div key={item.title} className="flex gap-4">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/15 font-serif text-sm font-medium text-primary">
                     {i + 1}
                   </span>
@@ -223,16 +263,16 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                       {item.description}
                     </p>
                   </div>
-                </RevealItem>
+                </div>
               ))}
-            </Reveal>
+            </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* Approaches we draw on */}
-        <section className="px-6 py-20">
+        <Reveal direction="left" className="px-6 py-20">
           <div className="mx-auto max-w-6xl">
-            <Reveal className="mx-auto max-w-2xl text-center">
+            <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium uppercase tracking-wide text-primary">
                 How we work
               </p>
@@ -242,12 +282,12 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
               <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
                 {service.approaches.intro}
               </p>
-            </Reveal>
-            <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+            </div>
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
               {service.approaches.items.map((item) => {
                 const Icon = approachIcons[item.icon] ?? Sprout;
                 return (
-                  <RevealItem
+                  <div
                     key={item.title}
                     className="flex flex-col gap-4 rounded-3xl border border-border/60 bg-card p-7 transition-colors hover:border-primary/40 hover:bg-secondary/40"
                   >
@@ -260,16 +300,16 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                     <p className="text-pretty leading-relaxed text-muted-foreground">
                       {item.description}
                     </p>
-                  </RevealItem>
+                  </div>
                 );
               })}
-            </Reveal>
+            </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* Fees & rebates */}
-        <section className="bg-secondary/40 px-6 py-20">
-          <Reveal className="mx-auto max-w-6xl">
+        <Reveal direction="up" className="bg-secondary/40 px-6 py-20">
+          <div className="mx-auto max-w-6xl">
             <div className="grid gap-10 rounded-[2.5rem] border border-border/60 bg-card p-8 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div className="flex flex-col items-start gap-5">
                 <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
@@ -298,11 +338,10 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 </Button>
               </div>
 
-              <Reveal stagger as="ul" className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {service.fees.items.map((item) => (
-                  <RevealItem
+                  <div
                     key={item.label}
-                    as="li"
                     className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-secondary/40 p-5"
                   >
                     <span className="flex size-9 items-center justify-center rounded-full bg-primary/12 font-serif text-base font-medium text-primary">
@@ -314,17 +353,17 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                     <span className="font-serif text-lg font-medium text-foreground">
                       {item.value}
                     </span>
-                  </RevealItem>
+                  </div>
                 ))}
-              </Reveal>
+              </div>
             </div>
-          </Reveal>
-        </section>
+          </div>
+        </Reveal>
 
         {/* FAQ */}
         <section className="px-6 py-20">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <Reveal direction="right" className="lg:sticky lg:top-32 lg:self-start">
+            <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="mb-3 text-sm font-medium uppercase tracking-wide text-primary">
                 Good to know
               </p>
@@ -335,10 +374,10 @@ export function ServicePageTemplate({ service }: { service: ServiceContent }) {
                 A few of the things people often wonder about before getting
                 started.
               </p>
-            </Reveal>
-            <Reveal delay={0.1}>
+            </div>
+            <div>
               <FaqAccordion faqs={service.faqs} />
-            </Reveal>
+            </div>
           </div>
         </section>
 

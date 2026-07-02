@@ -31,26 +31,35 @@ const menuGroups: MenuGroup[] = [
     href: "/#services",
     links: [
       {
-        label: "Adult Therapy",
-        href: "/services/adult-therapy",
-        description: "Support for individuals",
+        label: "Individual Therapy",
+        href: "/services/individual-therapy",
+        description: "One-on-one support",
       },
       {
-        label: "Adolescent Therapy",
-        href: "/services/adolescent-therapy",
-        description: "Care for younger clients",
+        label: "Trauma Therapy",
+        href: "/services/trauma-therapy",
+        description: "Gentle, trauma-informed care",
       },
       {
-        label: "Relationship Counselling",
-        href: "/services/relationship-counselling",
-        description: "Couples & families",
+        label: "First Responders",
+        href: "/services/first-responders",
+        description: "Support for frontline workers",
       },
       {
-        label: "Fees & Rebates",
-        href: "/#services",
-        description: "Pricing & Medicare info",
+        label: "Relationship Therapy",
+        href: "/services/relationship-therapy",
+        description: "Couples & partners",
       },
-      { label: "FAQs", href: "/#faq", description: "Common questions" },
+      {
+        label: "Diagnostic Assessments",
+        href: "/services/diagnostic-assessments",
+        description: "Clarity & understanding",
+      },
+      {
+        label: "Workshops",
+        href: "/services/workshops",
+        description: "Practical group programs",
+      },
     ],
   },
   {
